@@ -1,0 +1,19 @@
+{
+  "name": "energy-backend",
+  "version": "0.0.1",
+  "description": "Node.js alternative for the current PHP backend for webscada",
+  "main": "bin/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gijsvanlokven/energy-backend.git"
+  },
+  "author": "Gijs van Lokven OmniLAN",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gijsvanlokven/energy-backend/issues"
+  },
+  "homepage": "https://github.com/gijsvanlokven/energy-backend#readme"
+}
