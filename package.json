@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/gijsvanlokven/energy-backend/issues"
   },
-  "homepage": "https://github.com/gijsvanlokven/energy-backend#readme"
+  "homepage": "https://github.com/gijsvanlokven/energy-backend#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.4",
+    "express": "^4.17.0",
+    "morgan": "^1.9.1",
+    "mysql": "^2.17.1"
+  }
 }

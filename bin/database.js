@@ -1,31 +1,35 @@
-import MySQL, { Pool, FieldInfo } from "mysql";
-
-export default class database {
-    private static engine: Pool;
-    constructor(user: string, password: string, host: string, standardDB = "solar") {
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const mysql_1 = __importDefault(require("mysql"));
+class database {
+    constructor(user, password, host, standardDB = "solar") {
         if (!database.engine) {
             console.log(arguments);
             if (user && password && host) {
-                database.engine = MySQL.createPool({
+                database.engine = mysql_1.default.createPool({
                     host,
                     user,
                     password,
                     database: standardDB
                 });
             }
-            else throw new TypeError("Trying to create database without parameters.");
+            else
+                throw new TypeError("Trying to create database without parameters.");
         }
     }
-    public static query(query: string): Promise<{ count: number, columns: FieldInfo[], results: any[] }> {
+    static query(query) {
         return new Promise((resolve, reject) => {
-            let result: any[] = [];
-            database.engine.query(query, (err, results, fields: FieldInfo[]) => {
+            let result = [];
+            database.engine.query(query, (err, results, fields) => {
                 if (err)
                     reject(err);
                 else {
                     if (results.length) {
-                        results.forEach((row: any, index: any) => {
-                            let currentRow: { [key: string]: any } = {};
+                        results.forEach((row, index) => {
+                            let currentRow = {};
                             Object.keys(row).map(column => {
                                 let json = this.IsJson(results[index][column]);
                                 if (json)
@@ -36,22 +40,24 @@ export default class database {
                             });
                             result.push(currentRow);
                         });
-                        resolve({ count: results.length as number, columns: fields as any[], results: result });
+                        resolve({ count: results.length, columns: fields, results: result });
                     }
-                    else resolve({ count: 0, results: [], columns: [] });
+                    else
+                        resolve({ count: 0, results: [], columns: [] });
                 }
             });
         });
     }
-
-    static IsJson(str: string) {
+    static IsJson(str) {
         try {
             var o = JSON.parse(str);
             if (o && typeof o === "object") {
                 return o;
             }
-        } catch (e) { }
-
+        }
+        catch (e) { }
         return false;
     }
 }
+exports.default = database;
+//# sourceMappingURL=database.js.map

@@ -4,18 +4,13 @@ import logger from 'morgan';
 import database from './database';
 import config = require("../config");
 import APIEndpoint from "./APIEndpoint";
-import CoursesEndpoint from "./api/CoursesEndpoint";
-import QuestionsEndpoint from "./api/QuestionsEndpoint";
-import authEndpoint from "./api/authEndpoint";
-import AchievementsEndpoint from "./api/AchievementsEndpoint";
-import ActivityEndpoint from "./api/ActivityEndpoint";
-import UserEndpoint from "./api/UserEndpoint";
-import UserCourseEndpoint from "./api/UserCourseEndpoint";
+import EnergyEndpoint from "./api/EnergyEndpoint";
+
 new database(config.database.username, config.database.password, config.database.host);
 
 // a list with all endpoints.
 
-const endpoints: APIEndpoint[] = [new CoursesEndpoint(), new authEndpoint(), new QuestionsEndpoint(), new AchievementsEndpoint(), new ActivityEndpoint(), new UserEndpoint(), new UserCourseEndpoint()];
+const endpoints: APIEndpoint[] = [new EnergyEndpoint()];
 
 let app = express();
 
