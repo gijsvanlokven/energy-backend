@@ -13,7 +13,8 @@ class database {
                     host,
                     user,
                     password,
-                    database: standardDB
+                    database: standardDB,
+                    multipleStatements: true
                 });
             }
             else

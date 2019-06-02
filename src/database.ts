@@ -1,7 +1,7 @@
 import MySQL, { Pool, FieldInfo } from "mysql";
 
 export default class database {
-    private static engine: Pool;
+    public static engine: Pool;
     constructor(user: string, password: string, host: string, standardDB = "solar") {
         if (!database.engine) {
             console.log(arguments);
@@ -10,7 +10,8 @@ export default class database {
                     host,
                     user,
                     password,
-                    database: standardDB
+                    database: standardDB,
+                    multipleStatements: true
                 });
             }
             else throw new TypeError("Trying to create database without parameters.");
